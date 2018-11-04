@@ -27,6 +27,16 @@ module.exports={
 
 		});
 	},
+
+	getAllSub:function(callback)
+	{
+		var sql="SELECT * from sub_catagory";	
+		db.getResult(sql,[],function(result){
+				callback(result);
+
+		});
+	},
+
 	insert:function(user,callback)
 	{
 		var res = 0;
@@ -70,6 +80,35 @@ module.exports={
 				{
 					var sql="INSERT INTO sub_catagory VALUES(null,?,?,?,?,?,?)";	
 					db.execute(sql,[object.sub_cat_name,object.cat_id,object.createdBy,object.createData,object.updateDate,object.isDelete],function(result){
+					if(result)
+					{
+						callback(true);
+					}
+					else
+					{
+						callback(false);
+					}
+				});
+				}
+
+		});
+		
+		
+	},
+
+
+	insertManufac:function(object,callback)
+	{
+		var check = "SELECT * from manufacturer where man_name = ?";	
+		db.getResult(check,[object.manu_name],function(result1){
+				if(result1.length>0)
+				{
+					console.log("Already exists");
+				}
+				else
+				{
+					var sql="INSERT INTO manufacturer VALUES(null,?,?,?,?,?,?)";	
+					db.execute(sql,[object.manu_name,object.createData,object.updateDate,object.isDelete,object.sub_cat_id,object.made_in],function(result){
 					if(result)
 					{
 						callback(true);
@@ -133,6 +172,35 @@ module.exports={
 				}
 
 		});
+	},
+
+	insertSupp:function(user,callback)
+	{
+		var res = 0;
+		var check = "SELECT * from supplier where supp_name = ?";	
+		db.getResult(check,[user.supp_name],function(result1){
+				if(result1.length>0)
+				{
+					console.log("Already exists");
+				}
+				else
+				{
+					var sql="INSERT INTO supplier VALUES(null,?,?,?,?)";	
+					db.execute(sql,[user.supp_name,user.createData,user.updateDate,user.isDelete],function(result){
+					if(result)
+					{
+						callback(true);
+					}
+					else
+					{
+						callback(false);
+					}
+				});
+				}
+
+		});
+		
+		
 	}
 
 

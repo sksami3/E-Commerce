@@ -1,7 +1,8 @@
 var express=require('express');
 var router=express.Router();
 var userModel=require.main.require('./models/user/user-model');
-
+var asyncValidator=require('async-validator');
+regValidation=require.main.require('./Validation_rule/registration_validation');
 
 
 // router.get('*',function(req,res,next){
@@ -32,19 +33,36 @@ router.post('/',function(req,res){
 		password: req.body.pass,
 		type: "user"
 	};
-	userModel.insert(user,function(result){
 
-		if(result)
-		{
-			res.redirect("/");			
-		}
+
+	var validator = new asyncValidator(regValidation.registration);
+	validator.validate(user,function(errors,fields){
+		if(errors)
+			{
+				res.render('user/register',{errors: errors});
+			}
+
 		else
 		{
-			res.sent("can't insert");
+			userModel.insert(user,function(result){
+
+			if(result)
+			{
+				res.redirect("/");			
+			}
+			else
+			{
+				res.sent("can't insert");
+			}
+
+		});	
 		}
 
 	});
 });
+
+
+
 
 // router.get('/show',function(req,res){
 

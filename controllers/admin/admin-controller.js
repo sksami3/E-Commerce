@@ -98,6 +98,94 @@ router.post('/addSubCatagory',function(req,res){
 });
 
 
+router.get('/addManufacturer',function(req,res){
+
+	adminModel.getAllSub(function(result){
+
+		if(result.length>0){
+			res.render('admin/addManu',{list: result});
+			//console.log(result[0]);
+		}
+		else
+		{
+			res.sent('You do not have any catagory yet ');
+		}
+
+	});
+	
+	
+});
+
+
+router.post('/addManufacturer',function(req,res){
+
+	var object={
+		sub_cat_id: req.body.scl,
+		manu_name: req.body.mn,
+		made_in: req.body.madeIn,
+		createData: Date.today(),
+		updateDate: Date.today(),
+		isDelete: "false"
+	};
+	adminModel.insertManufac(object,function(result){
+
+		if(result)
+		{
+			res.redirect("/");			
+		}
+		else
+		{
+			res.sent("can't insert");
+		}
+
+	});
+	
+	
+	
+});
+
+
+router.get('/addSupplier',function(req,res){
+
+			res.render('admin/addSupp');
+			//console.log(result[0]);
+	
+	
+});
+
+
+router.post('/addSupplier',function(req,res){
+
+	//var sql="SELECT * from user WHERE username='"+req.body.username+"' and password='"+req.body.password+"'";
+	var user={
+		supp_name: req.body.sn,
+		createData: Date.today(),
+		updateDate: Date.today(),
+		isDelete: "false"
+	};
+	adminModel.insertSupp(user,function(result){
+
+		if(result)
+		{
+			res.redirect("/");			
+		}
+		else
+		{
+			res.sent("can't insert");
+		}
+
+	});
+});
+
+
+router.get('/addProduct',function(req,res){
+
+			res.render('admin/addProduct');
+			//console.log(result[0]);
+	
+	
+});
+
 
 // router.get('/show',function(req,res){
 

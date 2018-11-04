@@ -31,7 +31,7 @@ module.exports={
 	{
 		var res = 0;
 		var check = "SELECT * from register where email = ?";
-		var sql="SELECT * from employer WHERE email=?";	
+		//var sql="SELECT * from employer WHERE email=?";	
 		db.getResult(check,[user.email],function(result1){
 				if(result1.length>0)
 				{

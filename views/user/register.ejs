@@ -25,7 +25,17 @@
 			<script src="js/respond.min.js"></script>
 		<![endif]-->
 	</head>
-    <body>		
+    <body>	
+
+
+    	<% if(typeof errors !== 'undefined'){ %>
+			    		<div class="alert alert-danger">
+			    		<% for(var i = 0; i < errors.length; i++){ %>
+			    			<p><%= errors[i].message %></p>
+			    		<% } %>
+			    		</div>
+			    	<% } %>
+
 		<div id="top-bar" class="container">
 			<div class="row">
 				<div class="span4">
@@ -119,6 +129,7 @@
 									<div class="controls">
 										<input type="text" name="email" placeholder="Enter your email" class="input-xlarge">
 									</div>
+									<p id='emailalart' class="hidden">Email address already registred.Try with new Email</p>
 								</div>
 								<div class="control-group">
 									<label class="control-label">Password:</label>
