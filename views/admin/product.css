@@ -1,0 +1,55 @@
+
+.dropdown {
+    margin-bottom: 5px;
+    width: 120px;
+    background-color: lightcyan;
+}
+
+#state {
+
+    display: block;
+}
+
+#Texas {
+    display: none;
+}
+
+#California {
+    display: none;
+}
+
+
+#Florida {
+    display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.maincontrolbox {
+    margin: 20px;
+    margin-top: 5px;
+    padding: 20px;
+    width: 250px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#resultbox {
+    display: inline-block;
+    color: red;
+    font-weight: bold;
+    font-size: 16px;
+    /*background-color: aqua; font-weight: bold; border: solid 1px black; padding: 3px;*/
+}

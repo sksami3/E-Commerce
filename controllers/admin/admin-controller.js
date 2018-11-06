@@ -180,11 +180,122 @@ router.post('/addSupplier',function(req,res){
 
 router.get('/addProduct',function(req,res){
 
-			res.render('admin/addProduct');
+		adminModel.getAllManDet(function(result){
+
+		if(result.length>0){
+			res.render('admin/addProduct',{list: result});
 			//console.log(result[0]);
+		}
+		else
+		{
+			res.sent('You do not have any catagory yet ');
+		}
+
+	});
 	
 	
 });
+
+
+router.post('/addProduct',function(req,res){
+
+		var user1={
+
+		man_id: req.body.man_id
+
+		};
+
+		adminModel.searchSubCatIdFromManu(user1.man_id,function(result1){
+
+			if(result1)
+			{
+				adminModel.searchCatIdFromSub(result1[0].sub_cat_id,function(result2){
+
+					if(result2)
+					{
+							var user={
+							pro_name: req.body.pn,
+							man_id: req.body.man_id,
+							cat_id: result2[0].cat_id,
+							sub_cat_id: result1[0].sub_cat_id,
+							createData: Date.today(),
+							updateDate: Date.today(),
+							isDelete: "false"
+							};
+
+							adminModel.insertProduct(user,function(result){
+
+							if(result)
+							{
+								res.redirect("/");			
+							}
+							else
+							{
+								res.sent("can't insert");
+							}
+
+						});		
+					}
+					else
+					{
+						res.sent("can't insert");
+					}
+
+				});			
+			}
+			else
+			{
+				res.sent("can't insert");
+			}
+
+		});
+
+
+	
+	
+	
+});
+
+
+
+
+// router.get('/addProductDet',function(req,res){
+
+// 	adminModel.getAllPro(function(result1){
+
+// 		if(result1.length>0){
+// 			// res.render('admin/addProductDetails',{list: result});
+// 			console.log(result[0]);
+// 			adminModel.getAllbyId(function(result2){
+
+// 				if(result2.length>0){
+// 					// res.render('admin/addProductDetails',{list: result});
+// 					console.log(result2[0]);
+					
+// 				}
+// 				else
+// 				{
+// 					res.sent('You do not have any catagory yet ');
+// 				}
+
+// 			});
+// 		}
+// 		else
+// 		{
+// 			res.sent('You do not have any catagory yet ');
+// 		}
+
+// 	});
+	
+	
+// });
+
+
+
+
+
+
+
 
 
 // router.get('/show',function(req,res){

@@ -28,6 +28,15 @@ module.exports={
 		});
 	},
 
+	getAllbyId:function(cat_id,callback)
+	{
+		var sql="SELECT * from catagory where id=?";	
+		db.getResult(sql,[cat_id],function(result){
+				callback(result);
+
+		});
+	},
+
 	getAllSub:function(callback)
 	{
 		var sql="SELECT * from sub_catagory";	
@@ -201,7 +210,77 @@ module.exports={
 		});
 		
 		
+	},
+
+
+	getAllManDet:function(callback)
+	{
+		var sql="SELECT * from manufacturer";	
+		db.getResult(sql,[],function(result){
+				callback(result);
+
+		});
+	},
+
+
+	searchSubCatIdFromManu:function(manId,callback)
+	{
+		var sql="SELECT * from manufacturer where man_id=?";	
+		db.getResult(sql,[manId],function(result){
+				callback(result);
+
+		});
+	},
+
+	searchCatIdFromSub:function(subID,callback)
+	{
+		var sql="SELECT * from sub_catagory where id=?";	
+		db.getResult(sql,[subID],function(result){
+				callback(result);
+
+		});
+	},
+
+
+	insertProduct:function(user,callback)
+	{
+		var check = "SELECT * from product where pro_name = ?";	
+		db.getResult(check,[user.pro_name],function(result1){
+				if(result1.length>0)
+				{
+					console.log("Already exists");
+				}
+				else
+				{
+					var sql="INSERT INTO product VALUES(null,?,?,?,?,?,?,?)";	
+					db.execute(sql,[user.pro_name,user.cat_id,user.sub_cat_id,user.man_id,user.createData,user.updateDate,user.isDelete],function(result){
+					if(result)
+					{
+						callback(true);
+					}
+					else
+					{
+						callback(false);
+					}
+				});
+				}
+
+		});
+		
+		
+	},
+
+	getAllPro:function(callback)
+	{
+		var sql="SELECT * from product";	
+		db.getResult(sql,[],function(result){
+				callback(result);
+
+		});
 	}
+	
+	
+
 
 
 
