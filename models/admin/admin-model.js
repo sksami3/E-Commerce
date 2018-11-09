@@ -28,6 +28,16 @@ module.exports={
 		});
 	},
 
+
+	getAllSupp:function(callback)
+	{
+		var sql="SELECT * from supplier";	
+		db.getResult(sql,[],function(result){
+				callback(result);
+
+		});
+	},
+
 	getAllbyId:function(cat_id,callback)
 	{
 		var sql="SELECT * from catagory where id=?";	
@@ -241,6 +251,25 @@ module.exports={
 		});
 	},
 
+	getAllSubbyId:function(catID,callback)
+	{
+		var sql="SELECT * from sub_catagory where id=?";	
+		db.getResult(sql,[catID],function(result){
+				callback(result);
+
+		});
+	},
+
+	pro_det_ser:function(pdID,callback)
+	{
+		var sql="SELECT * from product_details where product_name=?";	
+		db.getResult(sql,[pdID],function(result){
+				callback(result);
+
+		});
+	},
+
+
 
 	insertProduct:function(user,callback)
 	{
@@ -270,10 +299,37 @@ module.exports={
 		
 	},
 
+	insertProductDetails:function(user,callback)
+	{
+		
+					var sql="INSERT INTO product_details VALUES(null,?,?,?,?,?,?,?)";	
+					db.execute(sql,[user.pi,user.pn,user.si,user.p,user.filePath,user.dc,user.wt],function(result){
+					if(result)
+					{
+						callback(true);
+					}
+					else
+					{
+						callback(false);
+					}
+		});
+		
+		
+	},
+
 	getAllPro:function(callback)
 	{
-		var sql="SELECT * from product";	
+		var sql="SELECT * FROM product JOIN sub_catagory ON product.sub_cat_id=sub_catagory.id JOIN catagory ON product.cat_id=catagory.id JOIN manufacturer ON product.man_id=manufacturer.man_id";	
 		db.getResult(sql,[],function(result){
+				callback(result);
+
+		});
+	},
+
+	getAllProByID:function(id1,callback)
+	{
+		var sql="SELECT * FROM product JOIN sub_catagory ON product.sub_cat_id=sub_catagory.id JOIN catagory ON product.cat_id=catagory.id JOIN manufacturer ON product.man_id=manufacturer.man_id where pro_id=?";	
+		db.getResult(sql,[id1],function(result){
 				callback(result);
 
 		});

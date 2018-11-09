@@ -325,48 +325,6 @@ router.get('/insertProductDetails/:id',function(req,res){
 
 
 
-router.post('/insertProductDetails/:id',function(req,res){
-
-
-	var pro= {
-		filePath: __dirname + "/" + req.body.pic,
-		pi: req.body.pi,
-		pn: req.body.pn,
-		qn: req.body.qn,
-		p: req.body.p,
-		dc: req.body.dc,
-		wt: req.body.wt,
-		si: req.body.supp
-	};
-
-	adminModel.pro_det_ser(req.body.pn,function(result1){
-
-			if(result1.length>0)
-			{
-				console.log("same");
-			}
-
-			else
-			{
-				adminModel.insertProductDetails(pro,function(result2){
-
-					if(result2)
-					{
-						console.log("done");
-					}
-					else
-					{
-						console.log("Not Done");
-					}
-				});	
-			}
-			});	
-		
-	
-});	
-
-
-
 
 
 

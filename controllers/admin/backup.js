@@ -259,111 +259,84 @@ router.post('/addProduct',function(req,res){
 
 
 
-router.get('/addProductDetails',function(req,res){
+router.get('/addProductDet',function(req,res){
 
 	adminModel.getAllPro(function(result1){
 
 		if(result1.length>0){
-
+			
+			// res.render('admin/addProductDetails',{list: result});
 			console.log(result1);
+			for(var i=0;i<result1.length;i++){
+			adminModel.getAllSubbyId(result1[i].sub_cat_id,function(result2){
 
-			
-			res.render('admin/addProductDetails',{list: result1});
-			
+				if(result2.length>0){
+					// res.render('admin/addProductDetails',{list: result});
+					console.log(result2);
+					for(var k=0;k<result2.length;k++){
+					adminModel.getAllbyId(result2[k].cat_id,function(result3){
+
+						if(result3.length>0){
+							// res.render('admin/addProductDetails',{list: result});
+							console.log(result3);
+							for(var l=0;l<result1.length;l++){
+
+							adminModel.searchSubCatIdFromManu(result1[l].man_id,function(result4){
+
+								if(result4.length>0){
+									// res.render('admin/addProductDetails',{list: result});
+									console.log(result4);
+
+									// var productDet={
+									// p_id: result1.pro_id,
+									// product_name: result1[i].pro_name,
+									// c_id: result2.id,
+									// catagory_name: result2[i].cat_name,
+									// sc_id: result3.id,
+									// scatagory_name: result3[i].sub_cat_name,
+									// man_id: result3.man_id,
+									// man_name: result3.man_name
+									// };
+
+									// res.render('admin/addProductDetails',{list: productDet});
+									
+								}
+								else
+								{
+									res.sent('You do not have any catagory yet ');
+								}
+
+							});
+						}
+							
+						}
+						else
+						{
+							res.sent('You do not have any catagory yet ');
+						}
+
+					});
+					}	
+					
+				}
+				else
+				{
+					res.sent('You do not have any catagory yet ');
+				}
+
+			});
 		}
 		
-		
+		}
 		else
 		{
 			res.sent('You do not have any catagory yet ');
 		}
 
 	});
-});	
-
-
-
-router.get('/insertProductDetails/:id',function(req,res){
-
-	var	id1 = req.params.id;
-	adminModel.getAllProByID(id1,function(result1){
-
-
-		if(result1.length>0){
-
-			console.log(result1);
-			adminModel.getAllSupp(function(result2){
-
-
-					if(result2.length>0){
-
-						console.log(result2);
-
-						
-						res.render('admin/insertProductDetails',{list: result1, list2: result2});
-						
-					}
-					
-					
-					else
-					{
-						res.sent('You do not have any catagory yet ');
-					}
-
-				});
-			
-		}
-		
-		
-		else
-		{
-			res.sent('You do not have any catagory yet ');
-		}
-
-	});
-});	
-
-
-
-router.post('/insertProductDetails/:id',function(req,res){
-
-
-	var pro= {
-		filePath: __dirname + "/" + req.body.pic,
-		pi: req.body.pi,
-		pn: req.body.pn,
-		qn: req.body.qn,
-		p: req.body.p,
-		dc: req.body.dc,
-		wt: req.body.wt,
-		si: req.body.supp
-	};
-
-	adminModel.pro_det_ser(req.body.pn,function(result1){
-
-			if(result1.length>0)
-			{
-				console.log("same");
-			}
-
-			else
-			{
-				adminModel.insertProductDetails(pro,function(result2){
-
-					if(result2)
-					{
-						console.log("done");
-					}
-					else
-					{
-						console.log("Not Done");
-					}
-				});	
-			}
-			});	
-		
 	
-});	
+	
+});
 
 
 

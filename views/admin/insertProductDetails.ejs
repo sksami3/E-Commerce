@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Add Product</title>
+
+    <!-- Bootstrap core CSS-->
+    <link href="http://localhost:8082/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template-->
+    <link href="http://localhost:8082/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin.css" rel="stylesheet">
+    
+
+
+
+
+
+
+
+    
+
+  </head>
+
+  <body class="bg-dark">
+
+    <div class="container">
+      <div class="card card-register mx-auto mt-5">
+        <div class="card-header">Add Product</div>
+        <div class="card-body">
+          <form method="post" name="Product_insert">
+            <div class="form-group">
+              <div class="form-row">
+                
+
+                
+                <div class="col-md-12">
+                    <div class="form-label-group">
+                    <label for="sel1">Manufacturer List:</label>
+                    <select class="form-control" name="supp" id="supp">
+                      <% for(var i = 0; i < list2.length; i++){ %>
+                      <option value="<%=list2[i].supp_id %>"><%=list2[i].supp_name %></option>
+                      <% } %>
+                    </select>
+
+
+                    <div class="form-group">
+                      <label for="exampleFormControlFile1">Example file input</label>
+                      <input type="file" name="pic" class="form-control-file" id="exampleFormControlFile1">
+                    </div>
+                  
+
+                   <div class="form-label-group">
+                    
+
+
+
+                  <div class="form-label-group">
+                    <input type="text" name="pi"  class="form-control"  value="<%=list[0].pro_id %>" required="required" autofocus="autofocus" readonly>
+                    <label for="firstName"></label>
+                  </div>
+
+
+                  <div class="form-label-group">
+                    <input type="text" name="pn" value="<%=list[0].pro_name %>"  class="form-control"  required="required" autofocus="autofocus" readonly>
+                    <label for="firstName"></label>
+                  </div>
+
+
+                  <div class="form-label-group">
+                    <input type="Number" min="1" name="qn"  class="form-control" placeholder="Quantity" required="required" autofocus="autofocus">
+                    <label for="firstName"></label>
+                  </div>
+
+
+                  <div class="form-label-group">
+                    <input type="Number" min="1" name="p"  class="form-control" placeholder="Price" required="required" autofocus="autofocus">
+                    <label for="firstName"></label>
+                  </div>
+
+
+                  <div class="form-label-group">
+                    <input type="Number" min="0.1" name="dc"  class="form-control" placeholder="Discount" required="required" autofocus="autofocus">
+                    <label for="firstName"></label>
+                  </div>
+
+
+                  <div class="form-label-group">
+                    <input type="text" min="0.1" name="wt"  class="form-control" placeholder="Details" required="required" autofocus="autofocus">
+                    <label for="firstName"></label>
+                  </div>
+
+
+                   
+
+
+
+
+            <!-- From here -->
+                
+            </div>
+            <input type="submit" class="btn btn-primary btn-block" value="Insert">
+            <!-- <a class="btn btn-primary btn-block">Insert</a> -->
+          </form>
+          
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="http://localhost:8082/vendor/jquery/jquery.min.js"></script>
+    <script src="http://localhost:8082/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="http://localhost:8082/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  </body>
+
+</html>

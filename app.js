@@ -20,8 +20,8 @@ app.use(express.static(__dirname + '/views/admin'));
 // app.use('/register',  express.static(__dirname + '/home/register'));
 
 //Routes
-app.use('/register',homeController);
-// app.use('/login',homeController);
+app.use('/',homeController);
+app.use('/home',homeController);
 app.use('/admin',adminController);
 
 // app.use('/logout',homeController);

@@ -18,13 +18,61 @@ regValidation=require.main.require('./Validation_rule/registration_validation');
 
 router.get('/',function(req,res){
 
+	userModel.getAllPD(function(result){
+
+		if(result.length>0){
+			userModel.getAllCat(function(result1){
+
+					if(result1.length>0){
+						if(result.length>0){
+							userModel.getAllSCat(function(result2){
+
+									if(result2.length>0){
+
+										console.log(result2);
+										res.render('user/index',{list: result,list1: result1, list2: result2});
+										//console.log(result[0]);
+									}
+									else
+									{
+										res.sent('You do not have any catagory yet ');
+									}
+
+								});
+
+								
+							//console.log(result[0]);
+						}
+						
+						//console.log(result[0]);
+					}
+					else
+					{
+						res.sent('You do not have any catagory yet ');
+					}
+
+				});
+
+				
+			//console.log(result[0]);
+		}
+		else
+		{
+			res.sent('You do not have any catagory yet ');
+		}
+
+	});
+	
+
+});
+router.get('/register',function(req,res){
+
 	//res.send("<script>alert('hello')</script>");
 	res.render('user/register');
 
 });
-
 //
-router.post('/',function(req,res){
+router.post('/register',function(req,res){
 
 	//var sql="SELECT * from user WHERE username='"+req.body.username+"' and password='"+req.body.password+"'";
 	var user={

@@ -59,6 +59,7 @@
                       <th>Catagory Name</th>
                       <th>Sub Catagory Name</th>
                       <th>Manufucturer Name</th>
+                      <th>Made id</th>
                       <th>Created Date</th>
                       <th>Details</th>
                     </tr>
@@ -69,20 +70,24 @@
                       <th>Catagory Name</th>
                       <th>Sub Catagory Name</th>
                       <th>Manufucturer Name</th>
+                      <th>Made id</th>
                       <th>Created Date</th>
                       <th>Details</th>
                     </tr>
                   </tfoot>
                   <tbody>
+                    
                     <tr>
-                      <td>Tiger Nixon</td>
-                      <td>System Architect</td>
-                      <td>Edinburgh</td>
-                      <td>61</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
+                      <% for(var i = 0; i < list.length; i++){ %>
+                      <td><%=list[i].pro_name %></td>
+                      <td><%=list[i].cat_name %></td>
+                      <td><%=list[i].sub_cat_name %></td>
+                      <td><%=list[i].man_name %></td>
+                      <td><%=list[i].made_in %></td>
+                      <td><%=list[i].createDate %></td>
+                      <td><a href="/admin/insertProductDetails/<%= list[i].pro_id %>">Details</a></td>
                     </tr>
-          
+                    <% } %>
                   </tbody>
                 </table>
               </div>

@@ -19,6 +19,34 @@ module.exports={
 	// 	});
 	// },
 
+	getAllPD:function(callback)
+	{
+		var sql="SELECT * from product_details";	
+		db.getResult(sql,[],function(result){
+				callback(result);
+
+		});
+	},
+
+	getAllCat:function(callback)
+	{
+		var sql="SELECT * from catagory";	
+		db.getResult(sql,[],function(result){
+				callback(result);
+
+		});
+	},
+
+	getAllSCat:function(callback)
+	{
+		var sql="SELECT * from sub_catagory";	
+		db.getResult(sql,[],function(result){
+				callback(result);
+
+		});
+	},
+
+
 	getAll:function(callback)
 	{
 		var sql="SELECT * from employer";	
