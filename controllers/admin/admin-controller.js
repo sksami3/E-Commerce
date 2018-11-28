@@ -1,19 +1,19 @@
 var express=require('express');
 var router=express.Router();
 var adminModel=require.main.require('./models/admin/admin-model');
+var alert = require('alert-node');
 
 
-
-// router.get('*',function(req,res,next){
-// 	if(req.session.una==null)
-// 	{
-// 		res.redirect('/login');
-// 	}
-// 	else
-// 	{
-// 		next();
-// 	}
-// });
+router.get('*',function(req,res,next){
+	if(req.session.una==null)
+	{
+		res.redirect('/register');
+	}
+	else
+	{
+		next();
+	}
+});
 
 router.get('/',function(req,res){
 
@@ -47,7 +47,8 @@ router.post('/addCatagory',function(req,res){
 		}
 		else
 		{
-			res.sent("can't insert");
+			//alert("can't insert");
+			res.redirect('/admin');
 		}
 
 	});
@@ -85,11 +86,11 @@ router.post('/addSubCatagory',function(req,res){
 
 		if(result)
 		{
-			res.redirect("/");			
+			res.redirect("/admin");			
 		}
 		else
 		{
-			res.sent("can't insert");
+			alert("can't insert");
 		}
 
 	});
@@ -108,7 +109,7 @@ router.get('/addManufacturer',function(req,res){
 		}
 		else
 		{
-			res.sent('You do not have any catagory yet ');
+			alert('You do not have any catagory yet ');
 		}
 
 	});
@@ -131,7 +132,7 @@ router.post('/addManufacturer',function(req,res){
 
 		if(result)
 		{
-			res.redirect("/");			
+			res.redirect("/admin");			
 		}
 		else
 		{
@@ -167,11 +168,11 @@ router.post('/addSupplier',function(req,res){
 
 		if(result)
 		{
-			res.redirect("/");			
+			res.redirect("/admin");			
 		}
 		else
 		{
-			res.sent("can't insert");
+			alert("can't insert");
 		}
 
 	});
@@ -188,7 +189,7 @@ router.get('/addProduct',function(req,res){
 		}
 		else
 		{
-			res.sent('You do not have any catagory yet ');
+			alert('You do not have any catagory yet ');
 		}
 
 	});
@@ -227,25 +228,25 @@ router.post('/addProduct',function(req,res){
 
 							if(result)
 							{
-								res.redirect("/");			
+								res.redirect("/admin");			
 							}
 							else
 							{
-								res.sent("can't insert");
+								alert("can't insert");
 							}
 
 						});		
 					}
 					else
 					{
-						res.sent("can't insert");
+						alert("can't insert");
 					}
 
 				});			
 			}
 			else
 			{
-				res.sent("can't insert");
+				alert("can't insert");
 			}
 
 		});
@@ -275,7 +276,7 @@ router.get('/addProductDetails',function(req,res){
 		
 		else
 		{
-			res.sent('You do not have any catagory yet ');
+			alert('You do not have any catagory yet ');
 		}
 
 	});
@@ -307,7 +308,7 @@ router.get('/insertProductDetails/:id',function(req,res){
 					
 					else
 					{
-						res.sent('You do not have any catagory yet ');
+						alert('You do not have any catagory yet ');
 					}
 
 				});
@@ -317,7 +318,7 @@ router.get('/insertProductDetails/:id',function(req,res){
 		
 		else
 		{
-			res.sent('You do not have any catagory yet ');
+			alert('You do not have any catagory yet ');
 		}
 
 	});

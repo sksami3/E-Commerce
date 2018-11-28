@@ -1,5 +1,5 @@
 var db=require('./db');
-
+var alert = require('alert-node');
 
 module.exports={
 
@@ -63,7 +63,7 @@ module.exports={
 		db.getResult(check,[user.cat_name],function(result1){
 				if(result1.length>0)
 				{
-					console.log("Already exists");
+					alert("Already exists");
 				}
 				else
 				{
@@ -93,7 +93,7 @@ module.exports={
 		db.getResult(check,[object.sub_cat_name],function(result1){
 				if(result1.length>0)
 				{
-					console.log("Already exists");
+					alert("Already exists");
 				}
 				else
 				{
@@ -122,7 +122,7 @@ module.exports={
 		db.getResult(check,[object.manu_name],function(result1){
 				if(result1.length>0)
 				{
-					console.log("Already exists");
+					alert("Already exists");
 				}
 				else
 				{
@@ -200,7 +200,7 @@ module.exports={
 		db.getResult(check,[user.supp_name],function(result1){
 				if(result1.length>0)
 				{
-					console.log("Already exists");
+					alert("Already exists");
 				}
 				else
 				{
@@ -277,7 +277,7 @@ module.exports={
 		db.getResult(check,[user.pro_name],function(result1){
 				if(result1.length>0)
 				{
-					console.log("Already exists");
+					alert("Already exists");
 				}
 				else
 				{

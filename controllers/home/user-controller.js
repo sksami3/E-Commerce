@@ -72,7 +72,7 @@ router.get('/register',function(req,res){
 
 });
 //
-router.post('/register',function(req,res){
+router.post('/registerForm',function(req,res){
 
 	//var sql="SELECT * from user WHERE username='"+req.body.username+"' and password='"+req.body.password+"'";
 	var user={
@@ -107,6 +107,43 @@ router.post('/register',function(req,res){
 		}
 
 	});
+});
+
+
+router.post('/loginForm',function(req,res){
+
+	var user={
+		username:req.body.username,
+		password:req.body.password
+	};
+
+	userModel.validate2(user,function(result){
+
+		if(result)
+		{
+			req.session.una=req.body.username;
+			res.redirect('/admin');			
+		}
+		else
+		{
+
+			userModel.validate1(user,function(result){
+
+			if(result)
+			{
+				req.session.une=req.body.username;
+				res.redirect('/home');			
+			}
+			else
+			{
+				console.log('somossa');
+			}
+
+			});
+		}
+
+	});
+	
 });
 
 

@@ -3,21 +3,36 @@ var db=require('./db');
 
 module.exports={
 
-	// validate:function(user,callback)
-	// {
-	// 	var sql="SELECT * from user WHERE username=? and password=?";	
-	// 	db.getResult(sql,[user.username,user.password],function(result){
-	// 			if(result.length>0)
-	// 			{
-	// 				callback(true);
-	// 			}
-	// 			else
-	// 			{
-	// 				callback(false);
-	// 			}
+	validate1:function(user,callback)
+	{
+		var sql="SELECT * from register WHERE username=? and password=? and type=?";	
+		db.getResult(sql,[user.username,user.password,'user'],function(result){
+				if(result.length>0)
+				{
+					callback(true);
+				}
+				else
+				{
+					callback(false);
+				}
 
-	// 	});
-	// },
+		});
+	},
+	validate2:function(user,callback)
+	{
+		var sql="SELECT * from register WHERE username=? and password=? and type=?";	
+		db.getResult(sql,[user.username,user.password,'admin'],function(result){
+				if(result.length>0)
+				{
+					callback(true);
+				}
+				else
+				{
+					callback(false);
+				}
+
+		});
+	},
 
 	getAllPD:function(callback)
 	{

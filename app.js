@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var expressSession = require('express-session');
 var adminController = require('./controllers/admin/admin-controller');
 var homeController = require('./controllers/home/user-controller');
+var logoutController = require('./controllers/home/logout-controller');
 var date = require('date-utils');
 // var empController = require('./controllers/employer/emp-controller');
 
@@ -23,6 +24,7 @@ app.use(express.static(__dirname + '/views/admin'));
 app.use('/',homeController);
 app.use('/home',homeController);
 app.use('/admin',adminController);
+app.use('/logout',logoutController);
 
 // app.use('/logout',homeController);
 // app.use('/employer',empController);
